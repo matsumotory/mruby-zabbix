@@ -12,21 +12,19 @@ class Zabbix
         'User-Agent'     => @ua,
       }
     end
-
     def post(data)
       auth
-      method = JSON::parse(data)["object"] + "." + JSON::parse(data)["method"] 
+      method = data[:object] + "." + data[:method] 
       req_json = {
         :jsonrpc => "2.0",
         :method  => method,
-        :params  => JSON::parse(data)["params"],
+        :params  => data[:params],
         :auth    => @auth_token,
         :id      => self.next_id,
       }
       http = HttpRequest.new()
       http.get(@url, JSON::stringify(req_json), @request)
     end
-
     def auth
       auth_data = {
         :auth        =>  nil,
@@ -38,7 +36,6 @@ class Zabbix
                         },
         :id          =>  1,
       }
-
       http = HttpRequest.new()
       response = http.get(@url, JSON::stringify(auth_data), @request)
       @auth_token = JSON::parse(response["body"])["result"]

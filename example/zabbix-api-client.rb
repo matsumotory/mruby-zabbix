@@ -8,14 +8,15 @@ config = {
 z = Zabbix::Client.new(config)
 
 data = {
-    :method  =>  "get",
-    :object  =>  "host",
-    :params  =>  {
-                    :output    =>  "extend",
-                    :filter          =>  {
-                                            :host    =>  "example.com",
-                                         },
-                },
+  :method => "get",
+  :object => "host",
+  :params => {
+               :output => "extend",
+               :filter => {
+                            :host    =>  "example.com",
+                          },
+             },
 }
 
-p z.post(JSON::stringify(data))["body"]
+puts "request:  #{JSON::stringify(data)}"
+puts "response: #{z.post(data)["body"]}"
