@@ -1,6 +1,6 @@
 # Zabbix 2.0 API client for mruby
 
-require mruby-httprequest
+require mruby-httprequest mruby-json
 
 ## install by mrbgems
 ```bash
@@ -37,3 +37,10 @@ data = {
 
 p z.post(JSON::stringify(data))["body"]
 ```
+
+# License
+under the MIT License:
+
+* http://www.opensource.org/licenses/mit-license.php
+
+
