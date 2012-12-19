@@ -13,7 +13,7 @@ data = {
     :params  =>  {
                     :output    =>  "extend",
                     :filter          =>  {
-                                            :host    =>  "tg.net.ist.i.kyoto-u.ac.jp",
+                                            :host    =>  "example.com",
                                          },
                 },
 }

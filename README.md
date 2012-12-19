@@ -30,7 +30,7 @@ data = {
     :params  =>  {
                     :output    =>  "extend",
                     :filter          =>  {
-                                            :host    =>  "example.jp",
+                                            :host    =>  "example.com",
                                          },
                 },
 }
