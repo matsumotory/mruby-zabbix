@@ -6,19 +6,19 @@ class Zabbix
       @pass = config[:pass]
       @ua   = config[:ua]
       @cid  = 1
-      @auth_toke = nil
+      @atoken = nil
       @request = {
         'Content-Type'   => "application/json-rpc",
         'User-Agent'     => @ua,
       }
     end
-    def get_id
+    def access_id
       @cid
     end
-    def get_auth_token
-      @auth_token
+    def auth_token
+      @atoken
     end
-    def get_request
+    def headers
       @request
     end
     def post(data)
@@ -28,7 +28,7 @@ class Zabbix
         :jsonrpc => "2.0",
         :method  => method,
         :params  => data[:params],
-        :auth    => @auth_token,
+        :auth    => @atoken,
         :id      => self.next_id,
       }
       http = HttpRequest.new()
@@ -47,7 +47,7 @@ class Zabbix
       }
       http = HttpRequest.new()
       response = http.get(@url, JSON::stringify(auth_data), @request)
-      @auth_token = JSON::parse(response["body"])["result"]
+      @atoken = JSON::parse(response["body"])["result"]
     end
     def next_id
       @cid += 1
