@@ -12,6 +12,15 @@ class Zabbix
         'User-Agent'     => @ua,
       }
     end
+    def get_id
+      @cid
+    end
+    def get_auth_token
+      @auth_token
+    end
+    def get_request
+      @request
+    end
     def post(data)
       auth
       method = data[:object] + "." + data[:method] 
